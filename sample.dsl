@@ -1,4 +1,3 @@
-SELECT timestamp, url, statusCode
+SELECT timestamp, url
 FROM sample.log
-WHERE timestamp = "2025-12-08 21:17:48"
-ORDER BY timestamp DESC
+WHERE url MATCH "/api/v1/auth/.*"

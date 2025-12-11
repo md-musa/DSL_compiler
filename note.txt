@@ -1,4 +1,61 @@
+
+------- Code Execution Command-----------------
 g++ -std=c++17 *.cpp -o logdsl
 
-
 logdsl sample.dsl
+
+---------------------------------------------
+-- ==========================
+-- LOGDSL CHEATSHEET
+-- ==========================
+
+-- 1. SELECT specific fields
+SELECT timestamp, url, statusCode
+FROM sample.log;
+
+-- 2. SELECT all fields
+SELECT *
+FROM sample.log;
+
+-- 3. WHERE clause (single condition)
+SELECT timestamp, url, statusCode
+FROM sample.log
+WHERE statusCode = 404;
+
+-- 4. WHERE clause with string containing spaces
+SELECT timestamp, url, statusCode
+FROM sample.log
+WHERE timestamp = "2025-12-08 21:17:48";
+
+-- 5. ORDER BY ascending (default)
+SELECT timestamp, url, statusCode
+FROM sample.log
+WHERE statusCode = 404
+ORDER BY timestamp;
+
+-- 6. ORDER BY descending
+SELECT timestamp, url, statusCode
+FROM sample.log
+WHERE statusCode = 404
+ORDER BY timestamp DESC;
+
+-- 7. COUNT rows
+SELECT COUNT(*)
+FROM sample.log;
+
+-- 8. COUNT with WHERE condition
+SELECT COUNT(*)
+FROM sample.log
+WHERE statusCode = 500;
+
+-- 9. MATCH operator (regex filter)
+SELECT timestamp, url
+FROM sample.log
+WHERE url MATCH "/api/v1/auth/.*";
+
+-- Notes:
+-- - Quotes around values with spaces are required: "2025-12-08 21:17:48"
+-- - Numeric values do not require quotes: 404, 500
+-- - Currently only a single condition in WHERE is supported
+-- - ORDER BY works for a single field
+-- - COUNT is supported only as COUNT(*)
