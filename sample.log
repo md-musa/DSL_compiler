@@ -1,0 +1,6 @@
+timestamp,statusCode,method,url,error_message,stack
+2025-12-08 21:13:49,404,GET,/api/v1/auth/user?userId=68ffcaa0612d0364c291e868,"User not found","Error: User not found | at ApiError.notFound (/app/errors.js:24:16)"
+2025-12-08 21:14:10,500,POST,/api/v1/auth/login,"Internal server error","Error: Database connection failed | at DB.connect (/app/db.js:42:10)"
+2025-12-08 21:15:05,401,GET,/api/v1/admin/panel,"Unauthorized access","Error: Unauthorized | at Auth.verify (/app/middleware/auth.js:18:9)"
+2025-12-08 21:16:22,400,POST,/api/v1/products,"Invalid product data","Error: Validation failed | at Validator.run (/app/validator.js:55:22)"
+2025-12-08 21:17:48,404,GET,/api/v1/vehicle?id=9999,"Vehicle not found","Error: Not found | at VehicleService.get (/app/services/vehicle.js:77:14)"

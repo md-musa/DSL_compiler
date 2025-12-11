@@ -1,0 +1,4 @@
+g++ -std=c++17 *.cpp -o logdsl
+
+
+logdsl sample.dsl
