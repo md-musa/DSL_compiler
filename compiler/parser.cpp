@@ -13,7 +13,6 @@ static std::string trim(const std::string& s) {
   return s.substr(start, end - start + 1);
 }
 
-// parse a single condition with value possibly containing spaces and quotes
 static Condition parseCondition(const std::string& condStr) {
   std::stringstream ss(condStr);
   std::string field, op, valRest;
@@ -21,7 +20,6 @@ static Condition parseCondition(const std::string& condStr) {
   std::getline(ss, valRest);
   valRest = trim(valRest);
 
-  // remove quotes if present
   if (!valRest.empty() && valRest.front() == '"' && valRest.back() == '"') {
     valRest = valRest.substr(1, valRest.size() - 2);
   }
@@ -47,8 +45,6 @@ static Condition parseCondition(const std::string& condStr) {
   return c;
 }
 
-// minimal parser, only supports SELECT fields, FROM file, optional WHERE with
-// single condition, optional ORDER BY
 bool parseQueryFile(const std::string& filename, Query& q) {
   std::ifstream in(filename);
   if (!in) return false;
@@ -56,9 +52,6 @@ bool parseQueryFile(const std::string& filename, Query& q) {
   std::string query;
   while (std::getline(in, line)) query += line + " ";
   query = trim(query);
-
-  // Remove uppercasing to preserve field/value cases
-  // std::transform(query.begin(), query.end(), query.begin(), ::toupper);
 
   size_t posSelect = query.find("SELECT ");
   size_t posFrom = query.find(" FROM ");
@@ -87,7 +80,7 @@ bool parseQueryFile(const std::string& filename, Query& q) {
     q.hasWhere = true;
     size_t endWhere = (posOrder == std::string::npos ? query.size() : posOrder);
     std::string condStr = query.substr(posWhere + 7, endWhere - (posWhere + 7));
-    // parse single condition (supports spaces in value)
+
     Condition c = parseCondition(condStr);
     q.whereExpr.conditions.push_back(c);
   }

@@ -1,6 +1,6 @@
 
 ------- Code Execution Command-----------------
-g++ -std=c++17 *.cpp -o logdsl
+g++ -std=c++17 compiler/*.cpp -o logdsl
 
 logdsl sample.dsl
 

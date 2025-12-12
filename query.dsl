@@ -1,3 +1,3 @@
 SELECT timestamp, url
-FROM sample.log
+FROM api_errors.log
 WHERE url MATCH "/api/v1/auth/.*"
